@@ -1,0 +1,39 @@
+version: '3.2'
+
+services:
+  web:
+    build:
+      context: ./nginx
+      dockerfile: ./Dockerfile
+    working_dir: /var/www
+    volumes:
+      - ./nginx/sites-available:/etc/nginx/sites-available
+      - ./nginx/sites-enabled:/etc/nginx/sites-enabled
+      - ./nginx/ssl:/etc/nginx/ssl
+    ports:
+      - "80:80"
+      - "443:443"
+  backend:
+    build:
+      context: ./backend
+      dockerfile: ./Dockerfile
+    working_dir: /var/www
+    volumes:
+      - ./backend:/var/www
+    command: composer update && composer install
+  bdd:
+    image: mysql:5.7
+    restart: always
+    volumes:
+      - ./mysql:/var/lib/mysql
+    environment:
+      - "MYSQL_DATABASE=lddw"
+      - "MYSQL_USER=user"
+      - "MYSQL_PASSWORD=secret"
+      - "MYSQL_ROOT_PASSWORD=root"
+    ports:
+      - "33061:3306"
+  # frontend:
+  #   build:
+  #     context: ./frontend
+  #     dockerfile: ./Dockerfile

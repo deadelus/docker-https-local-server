@@ -1,0 +1,1 @@
+docker run --rm -ti -v $(PWD):/usr/local/share -w /usr/local/share gliderlabs/alpine /bin/sh 
