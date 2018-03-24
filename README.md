@@ -1,5 +1,7 @@
-# docker-https-local-server
-Dockerized local server with ssl, nginx, php and mysql
+# Get rid of WAMP ! 
+# Let's go with lightweight turnkey dockerirezed https local server !
+
+Simple dockerized local server with ssl, nginx, php and mysql
 
 # Have SSL on local environement
 ## If you are working on a non-UNIX env
